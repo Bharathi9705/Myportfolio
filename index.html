@@ -215,7 +215,7 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="images/profile.jpeg" alt="Bharathi A" width="190" height="190"/>
+      <img src="Images/profile.jpeg" alt="Bharathi A" width="190" height="190"/>
     </div>
   </div>
 
@@ -225,7 +225,7 @@
     <p class="section-sub">A bit about who I am</p>
     <div class="about-grid">
       <div>
-        <p>I'm a third-year B.E. Electronics and Communication Engineering student at Sri Krishna College of Engineering and Technology, Coimbatore. Though my degree is in ECE, my passion lies in software development and web technologies.</p>
+        <p>I'm a final-year B.E. Electronics and Communication Engineering student at Sri Krishna College of Engineering and Technology, Coimbatore. Though my degree is in ECE, my passion lies in software development and web technologies.</p>
         <p>I've built full-stack applications using React.js and Firebase, developed safety-critical systems, and completed internships in both industry and open-source. I love building user-friendly digital solutions that solve real problems.</p>
         <p>I'm actively seeking a software development internship where I can apply my programming skills and grow alongside an experienced team.</p>
       </div>
@@ -235,8 +235,7 @@
         <div class="fact-row"><span class="fact-label">College</span><span class="fact-value">SKCET, Coimbatore</span></div>
         <div class="fact-row"><span class="fact-label">Batch</span><span class="fact-value">2023 – 2027</span></div>
         <div class="fact-row"><span class="fact-label">CGPA</span><span class="fact-value">8.0 / 10 (up to 6th sem)</span></div>
-        <div class="fact-row"><span class="fact-label">Email</span><span class="fact-value">bharathi20061882@gmail.com</span></div>
-        <div class="fact-row"><span class="fact-label">Phone</span><span class="fact-value">8124286696</span></div>
+        <div class="fact-row"><span class="fact-label">Email</span><span class="fact-value">bharathi20061882@gmail.com</span></div> 
         <div class="fact-row"><span class="fact-label">Status</span><span class="fact-value">🟢 Open to internships</span></div>
       </div>
     </div>
@@ -343,7 +342,6 @@
     <p class="section-sub">Reach me through any of these channels</p>
     <ul class="contact-links">
       <li><span class="icon">📧</span><a href="mailto:bharathi20061882@gmail.com">bharathi20061882@gmail.com</a></li>
-      <li><span class="icon">📞</span><a href="tel:+918124286696">8124286696</a></li>
       <li><span class="icon">💼</span><a href="https://www.linkedin.com/in/bharathi-a-91543b290" target="_blank">linkedin.com/in/bharathi-a-91543b290</a></li>
       <li><span class="icon">🐙</span><a href="https://github.com/Bharathi9705" target="_blank">github.com/Bharathi9705</a></li>
     </ul>
@@ -467,7 +465,6 @@
       <h3>Direct Contact</h3>
       <ul class="contact-links">
         <li><span class="icon">📧</span><a href="mailto:bharathi20061882@gmail.com">bharathi20061882@gmail.com</a></li>
-        <li><span class="icon">📞</span><a href="tel:+918124286696">8124286696</a></li>
         <li><span class="icon">💼</span><a href="https://www.linkedin.com/in/bharathi-a-91543b290" target="_blank">linkedin.com/in/bharathi-a-91543b290</a></li>
         <li><span class="icon">🐙</span><a href="https://github.com/Bharathi9705" target="_blank">github.com/Bharathi9705</a></li>
       </ul>
@@ -481,16 +478,16 @@
     </div>
     <div class="contact-form-box">
       <h3>Send a Message</h3>
-      <form onsubmit="alert('Thanks for reaching out! Bharathi will get back to you soon.'); this.reset(); return false;">
+      <form id="contact-form">
         <div class="form-row">
-          <div class="form-group"><label for="cn">Full Name *</label><input type="text" id="cn" placeholder="Your Name" required/></div>
-          <div class="form-group"><label for="ce">Email *</label><input type="email" id="ce" placeholder="you@example.com" required/></div>
+          <div class="form-group"><label for="cn">Full Name *</label><input type="text" id="cn" name="name" placeholder="Your Name" required/></div>
+          <div class="form-group"><label for="ce">Email *</label><input type="email" id="ce" name="email" placeholder="you@example.com" required/></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label for="cp">Phone</label><input type="tel" id="cp" placeholder="+91 XXXXX XXXXX"/></div>
+          <div class="form-group"><label for="cp">Phone</label><input type="tel" id="cp" name="phone" placeholder="+91 XXXXX XXXXX"/></div>
           <div class="form-group">
             <label for="cr">Reason *</label>
-            <select id="cr" required>
+            <select id="cr" name="reason" required>
               <option value="">-- Select --</option>
               <option>Internship Opportunity</option>
               <option>Project Collaboration</option>
@@ -499,13 +496,30 @@
             </select>
           </div>
         </div>
-        <div class="form-group"><label for="cs">Subject *</label><input type="text" id="cs" placeholder="e.g. Internship Opportunity at XYZ" required/></div>
-        <div class="form-group"><label for="cm">Message *</label><textarea id="cm" placeholder="Tell me what you have in mind..." required></textarea></div>
+        <div class="form-group"><label for="cs">Subject *</label><input type="text" id="cs" name="subject" placeholder="e.g. Internship Opportunity at XYZ" required/></div>
+        <div class="form-group"><label for="cm">Message *</label><textarea id="cm" name="message" placeholder="Tell me what you have in mind..." required></textarea></div>
         <div class="form-actions">
           <button type="submit" class="btn btn-primary">Send Message</button>
           <button type="reset" class="btn btn-outline">Clear</button>
         </div>
       </form>
+      <script>
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const response = await fetch('https://formspree.io/f/mwvzjygv', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      alert('Message sent! Bharathi will get back to you soon 😊');
+      this.reset();
+    } else {
+      alert('Something went wrong. Please email directly: bharathi20061882@gmail.com');
+    }
+  });
+</script>
     </div>
   </div>
 </main>
@@ -515,7 +529,7 @@
 <footer>
   <div class="container footer-inner">
     <span class="footer-logo">Bharathi<span>.</span></span>
-    <p>&copy; 2025 Bharathi A. Built with HTML &amp; CSS.</p>
+    <p>&copy; 2026 Bharathi A. Built with HTML &amp; CSS.</p>
     <nav class="footer-links">
       <a onclick="showPage('projects')">Projects</a>
       <a onclick="showPage('internship')">Internship</a>
